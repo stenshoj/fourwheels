@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using FourWheel.Web.Repositories;
 using FourWheel.Web.Repositories.Fakes;
+using FourWheel.Web.DataContext;
+using Microsoft.EntityFrameworkCore;
 
 namespace FourWheel.Web
 {
@@ -19,6 +21,9 @@ namespace FourWheel.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<FourWheelContext>(options => 
+                options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=FourWheel;Trusted_Connection=True;MultipleActiveResultSets=true")
+                );
             services.AddTransient<ISparePartRepository, SparePartRepositoryMock>();
         }
 

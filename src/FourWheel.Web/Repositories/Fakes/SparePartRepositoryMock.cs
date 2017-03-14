@@ -8,7 +8,7 @@ namespace FourWheel.Web.Repositories.Fakes
 {
     public class SparePartRepositoryMock : ISparePartRepository
     {
-        public ISparePart this[int id]
+        public SparePart this[int id]
         {
             get
             {
@@ -16,7 +16,7 @@ namespace FourWheel.Web.Repositories.Fakes
             }
         }
 
-        public IEnumerable<ISparePart> SpareParts
+        public IEnumerable<SparePart> SpareParts
         {
             get
             {
@@ -24,22 +24,22 @@ namespace FourWheel.Web.Repositories.Fakes
             }
         }
 
-        public void Create(ISparePart sparePart)
+        public void Create(SparePart sparePart)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(ISparePart sparePart)
+        public void Delete(SparePart sparePart)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(ISparePart sparePart)
+        public void Update(SparePart sparePart)
         {
             throw new NotImplementedException();
         }
 
-        private IEnumerable<ISparePart> GetSpareParts()
+        private IEnumerable<SparePart> GetSpareParts()
         {
             yield return new SparePart { Id = 1, Name = "Engine", Price = 1000 };
             yield return new SparePart { Id = 2, Name = "Rearview mirror", Price = 30 };
