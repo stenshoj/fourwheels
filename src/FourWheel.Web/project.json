@@ -29,7 +29,6 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "FourWheel.Model": "1.0.0-*",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0"
   },
 
