@@ -9,7 +9,7 @@ namespace FourWheel.Web.DataContext
 {
     public class FourWheelContext : DbContext
     {
-
+        
         public DbSet<SparePart> SpareParts { get; set; }
     }
 }

@@ -8,10 +8,11 @@ namespace FourWheel.Web.Repositories
 {
     public interface ISparePartRepository
     {
-        IEnumerable<ISparePart> SpareParts { get; }
-        ISparePart this[int id] { get; }
-        void Create(ISparePart sparePart);
-        void Update(ISparePart sparePart);
-        void Delete(ISparePart sparePart);
+        IEnumerable<SparePart> SpareParts { get; }
+        SparePart this[int id] { get; }
+        IEnumerable<SparePart> this[Car car] { get; }
+        void Create(SparePart sparePart);
+        void Update(SparePart sparePart);
+        void Delete(SparePart sparePart);
     }
 }

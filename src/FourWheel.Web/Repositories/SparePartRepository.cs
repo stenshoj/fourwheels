@@ -1,4 +1,6 @@
-﻿using FourWheel.Web.Models;
+﻿using FourWheel.Web.DataContext;
+using FourWheel.Web.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,37 +8,64 @@ using System.Threading.Tasks;
 
 namespace FourWheel.Web.Repositories
 {
-    public class SparePartRepository : ISparePartRepository
+    public class SparePartRepository
     {
-        public ISparePart this[int id]
+        private FourWheelContext context;
+        public SparePartRepository(FourWheelContext context)
+        {
+            this.context = context;
+        }
+        public IEnumerable<SparePart> this[Car car]
         {
             get
             {
-                throw new NotImplementedException();
+                return from sparePart in context.SpareParts
+                       from compatibleCar in sparePart.Cars
+                       where compatibleCar.Make.ToUpper() == car.Make.ToUpper() && compatibleCar.Model.ToUpper() == car.Model.ToUpper() && compatibleCar.Year == car.Year
+                       select sparePart;
             }
         }
 
-        public IEnumerable<ISparePart> SpareParts
+        public SparePart this[int id]
         {
             get
             {
-                throw new NotImplementedException();
+                using (var context = new FourWheelContext())
+                {
+                    return context.SpareParts.Where(sparePart => sparePart.Id == id).First();
+                    //return context.SpareParts.Include(sparePart => sparePart.Cars).Where(sparePart => sparePart.Id == id).First();
+                }
             }
         }
 
-        public void Create(ISparePart sparePart)
+        public IEnumerable<SparePart> SpareParts
+        {
+            get
+            {
+                using (var context = new FourWheelContext())
+                {
+                    return context.SpareParts;
+                    //return context.SpareParts.Include(sparePart => sparePart.Cars);
+                }
+            }
+        }
+
+        public void Create(SparePart sparePart)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(ISparePart sparePart)
+        public void Delete(SparePart sparePart)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(ISparePart sparePart)
+        public void Update(SparePart sparePart)
         {
-            throw new NotImplementedException();
+            var part = context.SpareParts.First(s => s.Id == sparePart.Id);
+
+            part.Name = sparePart.Name;
+            part.Price = sparePart.Price;
         }
     }
 }

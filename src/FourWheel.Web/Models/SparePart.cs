@@ -5,38 +5,18 @@ using System.Threading.Tasks;
 
 namespace FourWheel.Web.Models
 {
-    public class SparePart : ISparePart
+    public class SparePart
     {
-        public IEnumerable<ICar> Cars { get; }
+        public ICollection<Car> Cars { get; set; }
 
         public int Id { get; set; }
 
-        public bool IsInStock { get; }
+        public bool IsInStock { get; set; }
 
         public string Name { get; set; }
 
         public decimal Price { get; set; }
 
-        public int Quantity { get; }
-
-        public void AddCar(ICar car)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddQuantity(int quantity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void RemoveCar(ICar car)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SubtractQuantity(int quantity)
-        {
-            throw new NotImplementedException();
-        }
+        public int Quantity { get; set; }
     }
 }

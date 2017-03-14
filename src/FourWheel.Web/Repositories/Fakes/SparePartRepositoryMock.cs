@@ -1,4 +1,6 @@
-﻿using FourWheel.Web.Models;
+﻿using FourWheel.Web.DataContext;
+using FourWheel.Web.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +10,7 @@ namespace FourWheel.Web.Repositories.Fakes
 {
     public class SparePartRepositoryMock : ISparePartRepository
     {
-        public ISparePart this[int id]
+        public IEnumerable<SparePart> this[Car car]
         {
             get
             {
@@ -16,30 +18,38 @@ namespace FourWheel.Web.Repositories.Fakes
             }
         }
 
-        public IEnumerable<ISparePart> SpareParts
+        public SparePart this[int id]
         {
             get
             {
-                throw new NotImplementedException();
+                return GetSpareParts().Where(sparePart => sparePart.Id == id).First();
             }
         }
 
-        public void Create(ISparePart sparePart)
+        public IEnumerable<SparePart> SpareParts
+        {
+            get
+            {
+                return GetSpareParts();
+            }
+        }
+
+        public void Create(SparePart sparePart)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(ISparePart sparePart)
+        public void Delete(SparePart sparePart)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(ISparePart sparePart)
+        public void Update(SparePart sparePart)
         {
             throw new NotImplementedException();
         }
 
-        private IEnumerable<ISparePart> GetSpareParts()
+        private IEnumerable<SparePart> GetSpareParts()
         {
             yield return new SparePart { Id = 1, Name = "Engine", Price = 1000 };
             yield return new SparePart { Id = 2, Name = "Rearview mirror", Price = 30 };
