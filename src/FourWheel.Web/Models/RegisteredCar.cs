@@ -12,5 +12,6 @@ namespace FourWheel.Web.Models
         public Car Car { get; set; }
         [Key]
         public string Registration { get; set; }
+        public WorkTask Task { get; set; }
     }
 }

@@ -1,0 +1,24 @@
+﻿@model CarViewModel
+
+@if (Model.CarsBySpareParts.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mærke</th>
+                <th>Model</th>
+                <th>Årgang</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var car in Model.CarsBySpareParts)
+            {
+                <tr>
+                    <td>@car.Make</td>
+                    <td>@car.Model</td>
+                    <td>@car.Year</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

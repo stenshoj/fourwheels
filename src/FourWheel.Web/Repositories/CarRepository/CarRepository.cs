@@ -25,6 +25,12 @@ namespace FourWheel.Data.CarRepository
             }
         }
 
+        public IEnumerable<Car> CarsBySparePart(SparePart sparePart)
+        {
+            return fourWheelContext.Cars.Where(c =>
+                c.CarSpareParts.Any(cs => cs.SparePart == sparePart));
+        }
+
         public IEnumerable<Car> Cars
         {
             get
@@ -35,8 +41,11 @@ namespace FourWheel.Data.CarRepository
 
         public void CreateCar(Car car)
         {
-            fourWheelContext.Add(car);
-            fourWheelContext.SaveChanges();
+            if (!fourWheelContext.Cars.Any(c => car.Make.ToUpper() == c.Make.ToUpper() && car.Model.ToUpper() == c.Model.ToUpper() && car.Year == c.Year))
+            {
+                fourWheelContext.Add(car);
+                fourWheelContext.SaveChanges();
+            }
         }
 
         public void DeleteCar(Car car)

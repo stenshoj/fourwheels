@@ -7,6 +7,8 @@ namespace FourWheel.Data.CarRepository
     {
         IEnumerable<Car> Cars { get; }
 
+        IEnumerable<Car> CarsBySparePart(SparePart sparePart);
+
         void CreateCar(Car car);
 
         void DeleteCar(Car car);

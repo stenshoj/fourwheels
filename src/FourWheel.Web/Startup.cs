@@ -11,6 +11,8 @@ using FourWheel.Web.Repositories;
 using FourWheel.Web.Repositories.Fakes;
 using FourWheel.Web.DataContext;
 using Microsoft.EntityFrameworkCore;
+using FourWheel.Data.CarRepository;
+using FourWheel.Web.Repositories.RegisteredCarRepository;
 
 namespace FourWheel.Web
 {
@@ -20,11 +22,13 @@ namespace FourWheel.Web
         // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
             services.AddDbContext<FourWheelContext>(options => 
                 options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=FourWheel;Trusted_Connection=True;MultipleActiveResultSets=true")
                 );
             services.AddTransient<ISparePartRepository, SparePartRepositoryMock>();
+            services.AddTransient<ICarRepository, CarRepository>();
+            services.AddTransient<IRegisteredCarRepository, RegisteredCarRepository>();
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

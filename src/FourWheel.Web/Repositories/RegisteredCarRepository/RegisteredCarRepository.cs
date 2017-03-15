@@ -49,6 +49,7 @@ namespace FourWheel.Web.Repositories.RegisteredCarRepository
         {
             var originalRegisteredCar = fourWheelContext.RegisteredCars.First(rc => rc.Registration.ToUpper() == registeredCar.Registration.ToUpper());
             originalRegisteredCar.Car = registeredCar.Car;
+            originalRegisteredCar.Task = registeredCar.Task;
             fourWheelContext.SaveChanges();
         }
     }

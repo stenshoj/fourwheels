@@ -8,9 +8,10 @@ using FourWheel.Web.DataContext;
 namespace FourWheel.Web.Migrations
 {
     [DbContext(typeof(FourWheelContext))]
-    partial class FourWheelContextModelSnapshot : ModelSnapshot
+    [Migration("20170315094208_Init2")]
+    partial class Init2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -61,11 +62,7 @@ namespace FourWheel.Web.Migrations
 
                     b.Property<int?>("CarYear");
 
-                    b.Property<int?>("TaskId");
-
                     b.HasKey("Registration");
-
-                    b.HasIndex("TaskId");
 
                     b.HasIndex("CarMake", "CarModel", "CarYear");
 
@@ -86,71 +83,22 @@ namespace FourWheel.Web.Migrations
                     b.ToTable("SpareParts");
                 });
 
-            modelBuilder.Entity("FourWheel.Web.Models.WorkTask", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Description");
-
-                    b.Property<DateTime>("EndTime");
-
-                    b.Property<DateTime>("StartTime");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("WorkTask");
-                });
-
-            modelBuilder.Entity("FourWheel.Web.Models.WorkTaskSparePart", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("SparePartId");
-
-                    b.Property<int?>("TaskId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SparePartId");
-
-                    b.HasIndex("TaskId");
-
-                    b.ToTable("WorkTaskSparePart");
-                });
-
             modelBuilder.Entity("FourWheel.Web.Models.CarSparePart", b =>
                 {
-                    b.HasOne("FourWheel.Web.Models.SparePart", "SparePart")
-                        .WithMany("CarSpareParts")
+                    b.HasOne("FourWheel.Web.Models.SparePart")
+                        .WithMany("Cars")
                         .HasForeignKey("SparePartId");
 
-                    b.HasOne("FourWheel.Web.Models.Car", "Car")
-                        .WithMany("CarSpareParts")
+                    b.HasOne("FourWheel.Web.Models.Car")
+                        .WithMany("SpareParts")
                         .HasForeignKey("CarMake", "CarModel", "CarYear");
                 });
 
             modelBuilder.Entity("FourWheel.Web.Models.RegisteredCar", b =>
                 {
-                    b.HasOne("FourWheel.Web.Models.WorkTask", "Task")
-                        .WithMany()
-                        .HasForeignKey("TaskId");
-
                     b.HasOne("FourWheel.Web.Models.Car", "Car")
                         .WithMany()
                         .HasForeignKey("CarMake", "CarModel", "CarYear");
-                });
-
-            modelBuilder.Entity("FourWheel.Web.Models.WorkTaskSparePart", b =>
-                {
-                    b.HasOne("FourWheel.Web.Models.SparePart", "SparePart")
-                        .WithMany()
-                        .HasForeignKey("SparePartId");
-
-                    b.HasOne("FourWheel.Web.Models.WorkTask", "Task")
-                        .WithMany("SpareParts")
-                        .HasForeignKey("TaskId");
                 });
         }
     }

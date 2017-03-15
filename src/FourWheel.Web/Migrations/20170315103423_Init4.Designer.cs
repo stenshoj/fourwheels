@@ -8,9 +8,10 @@ using FourWheel.Web.DataContext;
 namespace FourWheel.Web.Migrations
 {
     [DbContext(typeof(FourWheelContext))]
-    partial class FourWheelContextModelSnapshot : ModelSnapshot
+    [Migration("20170315103423_Init4")]
+    partial class Init4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
