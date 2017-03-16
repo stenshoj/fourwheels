@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -15,7 +14,6 @@ namespace FourWheel.Web.Models
         public string Model { get; set; }
 
         public int Year { get; set; }
-
         public ICollection<CarSparePart> CarSpareParts { get; set; }
     }
 }

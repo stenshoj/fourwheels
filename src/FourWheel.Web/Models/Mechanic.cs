@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace FourWheel.Web.Models
 {
-    public class WorkTaskSparePart
+    public class Mechanic
     {
-        public int Id { get; set; }
-        public SparePart SparePart { get; set; }
-        public WorkTask Task { get; set; }
+        public string Username { get; set; }
+        public ICollection<WorkTask> Tasks { get; set; } = new List<WorkTask>();
     }
 }

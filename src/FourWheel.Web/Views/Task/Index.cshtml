@@ -1,0 +1,44 @@
+@model IEnumerable<WorkTaskViewModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Registreringsnummer
+            </th>
+            <th>
+                Mechanic
+            </th>
+            <th>
+                Beskrivelse
+            </th>
+            <th>
+
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Registration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MechanicUsername)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-controller="SparePart" asp-action="AddToTask" asp-route-id="@item.Id">Tilføj reservedel</a>
+            </td>
+            <td>
+                <a asp-controller="SparePart" asp-action="RemoveFromTask" asp-route-id="@item.Id">Fjern reserverdel</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

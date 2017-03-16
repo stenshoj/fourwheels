@@ -1,0 +1,30 @@
+@model MechanicStartViewModel
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mekaniker
+            </th>
+            <th>
+                Beskrivelse
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.WorkTasks) {
+        <tr>
+            <td>
+                @item.Mechanic.Username
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-controller="task" asp-action="startTask" asp-route-id="@item.Id">Start</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

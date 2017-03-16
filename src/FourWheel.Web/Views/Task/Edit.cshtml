@@ -1,0 +1,37 @@
+﻿@model WorkTaskViewModel
+
+<form asp-action="Edit" method="post" class="form-horizontal" role="form">
+    <h4>Lav en opgave.</h4>
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Registration" class="col-md-2 control-label">Registreringsnummer</label>
+        <div class="col-md-5">
+            <input asp-for="Registration" class="form-control" />
+            <span asp-validation-for="Registration" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description" class="col-md-2 control-label">Beskrivelse</label>
+        <div class="col-md-5">
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MechanicUsername" class="col-md-2 control-label">Mekaniker brugernavn</label>
+        <div class="col-md-5">
+            <input asp-for="MechanicUsername" class="form-control" />
+            <span asp-validation-for="MechanicUsername" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <input type="submit" class="btn btn-primary" value="Save" />
+        </div>
+    </div>
+
+</form>

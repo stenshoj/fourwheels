@@ -1,0 +1,39 @@
+﻿@model MechanicStartViewModel
+
+<form asp-controller="task" asp-action="start" method="get">
+    <h3>Brugernavn:</h3>
+    <input type="text" name="username" />
+    <input type="submit" value="Start en opgave" />
+</form>
+
+<form asp-controller="task" asp-action="complete" method="get">
+    <h3>Brugernavn:</h3>
+    <input type="text" name="username" />
+    <input type="submit" value="Stop en opgave" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Mekaniker
+            </th>
+            <th>
+                Beskrivelse
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.WorkTasks)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mechanic.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
