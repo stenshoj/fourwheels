@@ -8,7 +8,7 @@ namespace FourWheel.Web.Repositories
 {
     public class SparePartRepository : ISparePartRepository
     {
-        public ISparePart this[int id]
+        public SparePart this[int id]
         {
             get
             {
@@ -16,7 +16,7 @@ namespace FourWheel.Web.Repositories
             }
         }
 
-        public IEnumerable<ISparePart> SpareParts
+        public IEnumerable<SparePart> SpareParts
         {
             get
             {
@@ -24,17 +24,17 @@ namespace FourWheel.Web.Repositories
             }
         }
 
-        public void Create(ISparePart sparePart)
+        public void Create(SparePart sparePart)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(ISparePart sparePart)
+        public void Delete(SparePart sparePart)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(ISparePart sparePart)
+        public void Update(SparePart sparePart)
         {
             throw new NotImplementedException();
         }
