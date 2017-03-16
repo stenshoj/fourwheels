@@ -1,0 +1,34 @@
+@model SparePartToCarViewModel
+
+@{
+    ViewData["Title"] = "Tilføj reservedele";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tilføj reservedele</h2>
+
+<form asp-action="AddToCar">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Reservedel
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.SparePartViewModels)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    <a asp-action="AddSparePartToCar" asp-route-id="@item.Id" asp-route-make="@Model.Make" asp-route-model="@Model.Model" asp-route-year="@Model.Year">Tilføj</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</form>

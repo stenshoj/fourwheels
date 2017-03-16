@@ -8,16 +8,29 @@ namespace FourWheel.Web.ViewModels.SpareParts
 {
     public class SparePartViewModel
     {
-        public IEnumerable<Car> Cars { get; }
-
+        private bool isInStock;
         public int Id { get; set; }
-
-        public bool IsInStock { get; }
 
         public string Name { get; set; }
 
         public decimal Price { get; set; }
 
-        public int Quantity { get; }
+        public int Quantity { get; set; }
+
+        public bool IsInStock
+        {
+            get
+            {
+                return this.Quantity > 0;
+            }
+            set
+            {
+                this.isInStock = value;
+            }
+        }
+
+        public bool IsToBeAdded { get; set; }
+
+        public IEnumerable<Car> Cars { get; set; }
     }
 }

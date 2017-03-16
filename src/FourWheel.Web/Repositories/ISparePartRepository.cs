@@ -13,6 +13,6 @@ namespace FourWheel.Web.Repositories
         IEnumerable<SparePart> this[Car car] { get; }
         void Create(SparePart sparePart);
         void Update(SparePart sparePart);
-        void Delete(SparePart sparePart);
+        void Delete(int id);
     }
 }

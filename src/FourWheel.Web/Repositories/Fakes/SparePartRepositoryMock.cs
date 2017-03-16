@@ -14,7 +14,7 @@ namespace FourWheel.Web.Repositories.Fakes
         {
             get
             {
-                throw new NotImplementedException();
+                return car.CarSpareParts.Select(carSparePart => carSparePart.SparePart);
             }
         }
 
@@ -22,7 +22,7 @@ namespace FourWheel.Web.Repositories.Fakes
         {
             get
             {
-                return GetSpareParts().Where(sparePart => sparePart.Id == id).First();
+                return DataBaseMock.GetSpareParts().Where(sparePart => sparePart.Id == id).First();
             }
         }
 
@@ -30,32 +30,20 @@ namespace FourWheel.Web.Repositories.Fakes
         {
             get
             {
-                return GetSpareParts();
+                return DataBaseMock.GetSpareParts();
             }
         }
 
         public void Create(SparePart sparePart)
         {
-            throw new NotImplementedException();
         }
 
-        public void Delete(SparePart sparePart)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
         }
 
         public void Update(SparePart sparePart)
         {
-            throw new NotImplementedException();
-        }
-
-        private IEnumerable<SparePart> GetSpareParts()
-        {
-            yield return new SparePart { Id = 1, Name = "Engine", Price = 1000 };
-            yield return new SparePart { Id = 2, Name = "Rearview mirror", Price = 30 };
-            yield return new SparePart { Id = 1, Name = "Windshield", Price = 200 };
-            yield return new SparePart { Id = 1, Name = "Cupholder", Price = 10 };
-            yield return new SparePart { Id = 1, Name = "Flux capacitor", Price = 10999.95M };
         }
     }
 }

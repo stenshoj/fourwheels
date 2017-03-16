@@ -1,0 +1,63 @@
+@model SparePartToTaskViewModel
+
+@{
+    ViewData["Title"] = "Tilføj reservedele";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tilføj reservedele</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Reservedel
+            </th>
+            <th>
+                Pris
+            </th>
+            <th>
+                Lagerstatus
+            </th>
+            <th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SparePartViewModels)
+        {
+            if (item.IsInStock)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                    <td>
+                        @item.Quantity
+                    </td>
+                    <td>
+                        <a asp-action="AddSparePartToTask" asp-route-id="@item.Id" asp-route-taskId="@Model.TaskId">Tilføj</a>
+                    </td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>
+                        <input type="text" asp-for="@item.Name" disabled="disabled" />
+                    </td>
+                    <td>
+                        <input type="text" asp-for="@item.Price" disabled="disabled" />
+                    </td>
+                    <td>
+                        Ikke på lager
+                    </td>
+                    <td></td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

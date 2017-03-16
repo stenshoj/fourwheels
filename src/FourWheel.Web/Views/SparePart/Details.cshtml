@@ -1,1 +1,36 @@
-ï»¿@Model SparePart
+@model FourWheel.Web.ViewModels.SpareParts.SparePartViewModel
+
+@{
+    ViewData["Title"] = "Detaljer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Navn
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            Pris
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt>
+            Antal på lager
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Rediger</a> |
+    <a asp-action="Index">Tilbage til reservedele</a>
+</div>

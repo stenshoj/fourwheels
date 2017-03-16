@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FourWheel.Web.Repositories
 {
-    public class SparePartRepository
+    public class SparePartRepository : ISparePartRepository
     {
         private FourWheelContext context;
         public SparePartRepository(FourWheelContext context)
@@ -20,9 +20,9 @@ namespace FourWheel.Web.Repositories
             get
             {
                 return from sparePart in context.SpareParts
-                       from compatibleCar in sparePart.Cars
-                       where compatibleCar.Make.ToUpper() == car.Make.ToUpper() && compatibleCar.Model.ToUpper() == car.Model.ToUpper() && compatibleCar.Year == car.Year
-                       select sparePart;
+                       from carSparePart in sparePart.CarSpareParts
+                       where carSparePart.Car.Make.ToUpper() == car.Make.ToUpper() && carSparePart.Car.Model.ToUpper() == car.Model.ToUpper() && carSparePart.Car.Year == car.Year
+                       select carSparePart.SparePart;
             }
         }
 
@@ -30,11 +30,8 @@ namespace FourWheel.Web.Repositories
         {
             get
             {
-                using (var context = new FourWheelContext())
-                {
-                    return context.SpareParts.Where(sparePart => sparePart.Id == id).First();
-                    //return context.SpareParts.Include(sparePart => sparePart.Cars).Where(sparePart => sparePart.Id == id).First();
-                }
+                return context.SpareParts.Where(sparePart => sparePart.Id == id).First();
+                //return context.SpareParts.Include(sparePart => sparePart.Cars).Where(sparePart => sparePart.Id == id).First();
             }
         }
 
@@ -42,20 +39,18 @@ namespace FourWheel.Web.Repositories
         {
             get
             {
-                using (var context = new FourWheelContext())
-                {
-                    return context.SpareParts;
-                    //return context.SpareParts.Include(sparePart => sparePart.Cars);
-                }
+                return context.SpareParts;
+                //return context.SpareParts.Include(sparePart => sparePart.Cars);
             }
         }
 
         public void Create(SparePart sparePart)
         {
-            throw new NotImplementedException();
+            context.SpareParts.Add(sparePart);
+            context.SaveChanges();
         }
 
-        public void Delete(SparePart sparePart)
+        public void Delete(int id)
         {
             throw new NotImplementedException();
         }
