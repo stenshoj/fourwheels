@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace FourWheel.Web.Models
 {
-    public class SparePart : ISparePart
+    public class SparePart
     {
-        public IEnumerable<ICar> Cars { get; }
+        public IEnumerable<Car> Cars { get; }
 
         public int Id { get; set; }
 
@@ -19,7 +19,7 @@ namespace FourWheel.Web.Models
 
         public int Quantity { get; }
 
-        public void AddCar(ICar car)
+        public void AddCar(Car car)
         {
             throw new NotImplementedException();
         }
@@ -29,7 +29,7 @@ namespace FourWheel.Web.Models
             throw new NotImplementedException();
         }
 
-        public void RemoveCar(ICar car)
+        public void RemoveCar(Car car)
         {
             throw new NotImplementedException();
         }

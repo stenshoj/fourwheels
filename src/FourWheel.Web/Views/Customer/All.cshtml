@@ -1,0 +1,46 @@
+﻿@model SeeCustomersViewModel
+
+<div class="panel-body">
+    <table class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Adresse</th>
+                <th>Telefonnummer</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.customers != null)
+            {
+                @foreach (var item in Model.customers)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Address</td>
+                        <td>@item.Phone</td>
+                        <td><a asp-action="Edit" asp-route-id="@item.Id">Opdater oplysninger</a> | 
+                            <a asp-action="Delete" asp-route-id="@item.Id">Slet</a></td>
+                    </tr>
+                    <th>Mærke</th>
+                    <th>Model</th>
+                    <th>Årgang</th>
+                    <th>Registreringsnummer</th>
+                    <tr>
+                    @foreach (var car in item.RegisteredCars)
+                    {
+                        <td>@car.Car.Make</td>
+                        <td>@car.Car.Model</td>
+                        <td>@car.Car.Year</td>
+                        <td>@car.Registration</td>
+                    }
+                    </tr>
+                }
+            }
+            else
+            {
+                <p>Intet at vise</p>
+            }
+            </tbody>
+        </table>
+    </div>

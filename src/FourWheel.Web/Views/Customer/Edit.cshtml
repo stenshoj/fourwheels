@@ -1,0 +1,84 @@
+﻿@model EditCustomerViewModel
+
+<form asp-controller="Customer" asp-action="Edit" method="post" class="form-horizontal" role="form">
+    <h4 class="col-md-offset-1">Opdatering af @Model.Name's oplysninger</h4>
+    <hr />
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <hr />
+    <div class="form-group">
+        <label asp-for="Name" class="col-md-1 control-label">Navn:</label>
+        <div class="col-md-10">
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address" class="col-md-1 control-label">Adresse:</label>
+        <div class="col-md-10">
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Phone" class="col-md-1 control-label">Telefonummer:</label>
+        <div class="col-md-10">
+            <input asp-for="Phone" class="form-control" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group">
+        <div class="col-md-offset-1 col-md-10">
+            <input type="submit" class="btn btn-primary" value="Ændre" />
+            <a asp-action="all">Tilbage til kunderne</a>
+        </div>
+    </div>
+
+</form>
+<form asp-controller="RegisteredCar" asp-action="Create" method="post" class="form-horizontal" role="form">
+    <h4 class="col-md-offset-1">Bilernes informationer</h4>
+
+    <div class="col-md-offset-1 col-md-10">
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr>
+                    <td></td>
+                    <th>Mærke</th>
+                    <th>Model</th>
+                    <th>Årgang</th>
+                    <th>Registreringsnummer</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.registeredcars != null)
+                {
+
+                    <tr>
+                        @foreach (var car in Model.registeredcars)
+                        {
+                            <td></td>
+                            <td>@car.Car.Make</td>
+                            <td>@car.Car.Model</td>
+                            <td>@car.Car.Year</td>
+                            <td>@car.Registration</td>
+                            <td><a asp-controller="RegisteredCar" asp-action="Edit" asp-route-registeredCar="@car">Opdater oplysninger</a></td>
+                        }
+                    </tr>
+                }
+                else
+                {
+                    <p>Intet at vise</p>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-1 col-md-10">
+            <input type="submit" class="btn btn-primary" value="Opret ny bil" />
+        </div>
+    </div>
+</form>
