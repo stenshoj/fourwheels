@@ -23,6 +23,8 @@ namespace FourWheel.Web.DataContext
         {
             modelBuilder.Entity<Car>()
                 .HasKey(c => new { c.Make, c.Model, c.Year });
+            modelBuilder.Entity<RegisteredCar>()
+                .HasKey(c => c.Registration);
         }
     }
 }

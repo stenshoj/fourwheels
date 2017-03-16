@@ -28,6 +28,7 @@ namespace FourWheel.Web
             services.AddTransient<ISparePartRepository, SparePartRepositoryMock>();
             services.AddTransient<ICarRepository, CarRepository>();
             services.AddTransient<IRegisteredCarRepository, RegisteredCarRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddMvc();
         }
 
@@ -44,6 +45,8 @@ namespace FourWheel.Web
 
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
+
+            DbInitializer.Seed(app);
         }
     }
 }
