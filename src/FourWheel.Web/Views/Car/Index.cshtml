@@ -1,27 +1,35 @@
 ﻿@model CarViewModel
-<h2>It Works!!</h2>
-@if (Model.Cars.Any())
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Mærke</th>
-                <th>Model</th>
-                <th>Årgang</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var car in Model.Cars)
-            {
+<div class="container">
+    <h2>It Works!!</h2>
+    @if (Model.Cars.Any())
+    {
+        <table class="table" cellpadding="0" cellspacing="0">
+            <thead>
                 <tr>
-                    <td>@car.Make</td>
-                    <td>@car.Model</td>
-                    <td>@car.Year</td>
-                    <td><button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Car", new { make = car.Make, model = car.Model, year = car.Year })'">Delete</button></td>
+                    <th>Mærke</th>
+                    <th>Model</th>
+                    <th>Årgang</th>
+                    <th style="width: 20%"></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-}
-<button class="btn btn-default" onclick="location.href='@Url.Action("Create", "Car")'">Create</button>
+            </thead>
+            <tbody>
+                @foreach (var car in Model.Cars)
+                {
+                    <tr>
+                        <td>@car.Make</td>
+                        <td>@car.Model</td>
+                        <td>@car.Year</td>
+                        <td>
+                            <div class="btn-group" role="group" style="right: 0px">
+                                <button class="btn btn-primary" onclick="location.href='@Url.Action("AddToCar", "SparePart", new { make = car.Make, model = car.Model, year = car.Year })'">Add Spare Part</button>
+                                <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Car", new { make = car.Make, model = car.Model, year = car.Year })'">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    <button class="btn btn-default" onclick="location.href='@Url.Action("Create", "Car")'">Create</button>
+    <button class="btn btn-default" onclick="location.href='@Url.Action("AddToSparePart", "Car")'">Add SparePart</button>
+</div>

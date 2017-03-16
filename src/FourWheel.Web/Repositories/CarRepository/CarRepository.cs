@@ -27,8 +27,7 @@ namespace FourWheel.Data.CarRepository
 
         public IEnumerable<Car> CarsBySparePart(SparePart sparePart)
         {
-            return fourWheelContext.Cars.Where(c =>
-                c.CarSpareParts.Any(cs => cs.SparePart == sparePart));
+            return sparePart.CarSpareParts.Select(sp => sp.Car);
         }
 
         public IEnumerable<Car> Cars

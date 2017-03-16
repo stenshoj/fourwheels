@@ -17,6 +17,7 @@ namespace FourWheel.Web.DataContext
         public DbSet<Car> Cars { get; set; }
         public DbSet<SparePart> SpareParts { get; set; }
         public DbSet<RegisteredCar> RegisteredCars { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

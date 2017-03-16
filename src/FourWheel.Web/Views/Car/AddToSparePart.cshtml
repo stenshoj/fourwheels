@@ -1,0 +1,38 @@
+﻿@model AddCarToSparePartViewModel
+<div class="container">
+    <h2>Add to sparepart</h2>
+    @if (Model.CarsToBeAdded.Any())
+    {
+        <form asp-action="AddToSparePart">
+            <table class="table" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th style="width: 20%"></th>
+                        <th>Tilføj</th>
+                        <th>Mærke</th>
+                        <th>Model</th>
+                        <th>Årgang</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var entry in Model.CarsToBeAdded)
+                    {
+                        <tr>
+                            <td>
+                                <div class="checkbox">
+                                    @Html.EditorFor(model => model.CarsToBeAdded[entry.Key])
+                                </div>
+                            </td>
+                            <td>@entry.Key.Split('/')[0]</td>
+                            <td>@entry.Key.Split('/')[1]</td>
+                            <td>@entry.Key.Split('/')[2]</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="form-group">
+                    <input type="submit" value="Tilføj!" class="btn btn-default" />
+            </div>
+        </form>
+    }
+</div>
