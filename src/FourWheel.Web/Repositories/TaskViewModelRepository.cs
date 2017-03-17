@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FourWheel.Web.Models;
 using FourWheel.Web.ViewModels;
+using FourWheel.Web.Repositories.RegisteredCarRepository;
 
 namespace FourWheel.Web.Repositories
 {
@@ -16,7 +17,7 @@ namespace FourWheel.Web.Repositories
         {
             get
             {
-                return registeredCarRepository.Cars.Select(MapToViewModel);
+                return registeredCarRepository.RegisteredCars.Select(MapToViewModel);
             }
         }
 
@@ -24,7 +25,7 @@ namespace FourWheel.Web.Repositories
         {
             get
             {
-                return MapToViewModel(registeredCarRepository.Cars.First(car => car.Task.Id == id));
+                return MapToViewModel(registeredCarRepository.RegisteredCars.First(car => car.Task.Id == id));
             }
         }
 
@@ -39,7 +40,7 @@ namespace FourWheel.Web.Repositories
             var registeredCar = registeredCarRepository[viewModel.Registration];
             var mechanic = mechanicRepository[viewModel.MechanicUsername];
             registeredCar.Task = new WorkTask { Description = viewModel.Description, Mechanic = mechanic };
-            registeredCarRepository.Update(registeredCar);
+            registeredCarRepository.UpdateRegisteredCar(registeredCar);
         }
 
         public bool Delete(WorkTaskViewModel viewModel)
@@ -54,7 +55,7 @@ namespace FourWheel.Web.Repositories
             var mechanic = mechanicRepository[viewModel.MechanicUsername];
             task.Description = viewModel.Description;
             task.Mechanic = mechanic;
-            registeredCarRepository.Update(registeredCar);
+            registeredCarRepository.UpdateRegisteredCar(registeredCar);
         }
 
         private WorkTaskViewModel MapToViewModel(RegisteredCar registeredCar)

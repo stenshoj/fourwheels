@@ -12,6 +12,8 @@ using FourWheel.Web.Repositories.Fakes;
 using FourWheel.Web.DataContext;
 using Microsoft.EntityFrameworkCore;
 using FourWheel.Web.Models;
+using FourWheel.Web.Repositories.RegisteredCarRepository;
+using FourWheel.Data.CarRepository;
 
 namespace FourWheel.Web
 {
@@ -24,13 +26,15 @@ namespace FourWheel.Web
             services.AddDbContext<FourWheelContext>(options => 
                 options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=FourWheel;Integrated Security=true;MultipleActiveResultSets=true"));
             services.AddMvc();
-            services.AddTransient<IRegisteredCarRepository, RegisteredCarRepositoryFake>();
+            services.AddTransient<IRegisteredCarRepository, RegisteredCarRepository>();
             services.AddTransient<ITaskViewModelRepository, TaskViewModelRepository>();
-            services.AddTransient<IMechanicRepository, MechanicRepositoryFake>();
+            services.AddTransient<IMechanicRepository, MechanicRepository>();
             services.AddTransient<ITaskRepository, TaskRepository>();
             services.AddTransient<ITaskManager, TaskManager>();
             services.AddTransient<IMechanicStartViewModelRepository, MechanicStartViewModelRepository>();
-            services.AddTransient<ISparePartRepository, SparePartRepositoryMock>();
+            services.AddTransient<ISparePartRepository, SparePartRepository>();
+            services.AddTransient<ICarRepository, CarRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
